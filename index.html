@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0f1a">
+  <meta name="description" content="Northstar Digital builds premium websites and intelligent business automation that help businesses move forward.">
+  <title>Northstar Digital — Websites. Automation. Growth.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --surface: #111827;
+      --surface-light: #172235;
+      --blue: #3b82f6;
+      --blue-light: #60a5fa;
+      --silver: #c5cad3;
+      --white: #f8fafc;
+      --muted: #9aa6b8;
+      --border: rgba(197, 202, 211, 0.13);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1120px, 90%); margin: auto; }
+    .section { padding: 110px 0; }
+    .eyebrow {
+      color: var(--blue-light);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1, h2, h3, .brand-name {
+      font-family: "Space Grotesk", sans-serif;
+    }
+    h2 {
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+    }
+    .section-intro {
+      max-width: 620px;
+      color: var(--muted);
+      margin-top: 18px;
+      font-size: 16px;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0; right: 0;
+      background: rgba(11, 15, 26, 0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      color: var(--silver);
+    }
+    .brand-name {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+    }
+    .brand-name span { color: var(--blue-light); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      padding: 11px 19px;
+      border: 1px solid rgba(96, 165, 250, .55);
+      border-radius: 5px;
+      color: var(--white) !important;
+    }
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: none;
+      color: white;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 23px;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: transform .2s, background .2s;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+      box-shadow: 0 8px 30px rgba(59, 130, 246, .2);
+    }
+    .btn-primary:hover { background: #2563eb; }
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--silver);
+    }
+    .btn-outline:hover { background: var(--surface); }
+
+    /* Hero */
+    .hero {
+      min-height: 760px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 145px 0 100px;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      right: -190px;
+      top: 30px;
+      background: radial-gradient(circle, rgba(37, 99, 235, .19), transparent 68%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 55px;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: clamp(48px, 7vw, 78px);
+      line-height: 1.04;
+      letter-spacing: -4px;
+      max-width: 720px;
+    }
+    .hero h1 span {
+      color: var(--blue-light);
+    }
+    .hero-copy {
+      color: var(--muted);
+      max-width: 540px;
+      margin: 27px 0 32px;
+      font-size: 17px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; }
+    .hero-note {
+      margin-top: 55px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .status-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #60d394;
+      box-shadow: 0 0 12px #60d394;
+    }
+    .hero-art {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 370px;
+    }
+    .orbit {
+      width: 310px;
+      height: 310px;
+      border: 1px solid rgba(96, 165, 250, .2);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      position: relative;
+      box-shadow: 0 0 100px rgba(37, 99, 235, .08);
+    }
+    .orbit::before, .orbit::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(96, 165, 250, .16);
+      border-radius: 50%;
+    }
+    .orbit::before { inset: 27px; }
+    .orbit::after { inset: -28px; border-style: dashed; }
+    .compass {
+      width: 145px;
+      height: 145px;
+      color: var(--silver);
+      filter: drop-shadow(0 0 28px rgba(96, 165, 250, .3));
+    }
+    .orbit-label {
+      position: absolute;
+      bottom: 13px;
+      right: -35px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 11px 16px;
+      border-radius: 6px;
+      color: var(--silver);
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    /* Services */
+    .services { background: #0e1421; border-block: 1px solid var(--border); }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 48px;
+    }
+    .service-card {
+      background: linear-gradient(145deg, var(--surface), #0d1421);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 36px;
+      transition: border-color .25s, transform .25s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(96, 165, 250, .55);
+    }
+    .service-icon {
+      width: 48px; height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      background: rgba(59, 130, 246, .12);
+      color: var(--blue-light);
+      font-size: 23px;
+      margin-bottom: 25px;
+    }
+    .service-card h3 { font-size: 24px; margin-bottom: 13px; }
+    .service-card p { color: var(--muted); font-size: 14px; }
+    .service-list {
+      list-style: none;
+      margin-top: 25px;
+      display: grid;
+      gap: 11px;
+    }
+    .service-list li {
+      color: var(--silver);
+      font-size: 13px;
+    }
+    .service-list li::before {
+      content: "↗";
+      color: var(--blue-light);
+      margin-right: 10px;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 75px;
+      align-items: center;
+    }
+    .about-panel {
+      background: linear-gradient(145deg, #17243a, #101827);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      min-height: 330px;
+      padding: 35px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .about-panel .big-mark {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 100px;
+      line-height: 1;
+      color: rgba(197, 202, 211, .14);
+      font-weight: 700;
+    }
+    .about-panel strong {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 23px;
+      max-width: 230px;
+    }
+    .about-copy p {
+      color: var(--muted);
+      margin-top: 20px;
+      font-size: 15px;
+    }
+    .about-points {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .about-point strong {
+      display: block;
+      color: var(--white);
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    .about-point span { color: var(--muted); font-size: 12px; }
+
+    /* Work */
+    .work { background: #0e1421; border-block: 1px solid var(--border); }
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 45px;
+    }
+    .work-card {
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .work-preview {
+      min-height: 220px;
+      display: grid;
+      place-items: center;
+      padding: 25px;
+      background:
+        radial-gradient(circle at 70% 30%, rgba(59, 130, 246, .23), transparent 50%),
+        linear-gradient(135deg, #17243a, #101827);
+    }
+    .preview-window {
+      width: 85%;
+      max-width: 360px;
+      border: 1px solid rgba(197, 202, 211, .22);
+      background: rgba(11, 15, 26, .86);
+      border-radius: 7px;
+      padding: 13px;
+      box-shadow: 0 15px 45px rgba(0,0,0,.3);
+    }
+    .preview-top { display: flex; gap: 5px; margin-bottom: 18px; }
+    .preview-top i {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #66758c;
+    }
+    .preview-line {
+      height: 7px;
+      width: 65%;
+      border-radius: 5px;
+      background: #34445e;
+      margin: 10px 0;
+    }
+    .preview-line.short { width: 38%; }
+    .preview-button {
+      width: 70px;
+      height: 19px;
+      border-radius: 4px;
+      background: var(--blue);
+      margin-top: 17px;
+    }
+    .work-info { padding: 25px; }
+    .work-info small {
+      color: var(--blue-light);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .work-info h3 { font-size: 21px; margin: 8px 0; }
+    .work-info p { color: var(--muted); font-size: 13px; }
+    .work-disclaimer {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 20px;
+    }
+
+    /* Process */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-top: 48px;
+    }
+    .process-card {
+      border-top: 1px solid var(--border);
+      padding-top: 25px;
+    }
+    .process-number {
+      color: var(--blue-light);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+    .process-card h3 { font-size: 21px; margin: 15px 0 10px; }
+    .process-card p { color: var(--muted); font-size: 13px; }
+
+    /* Contact */
+    .contact { background: #0e1421; border-top: 1px solid var(--border); }
+    .contact-panel {
+      padding: 65px;
+      border-radius: 12px;
+      border: 1px solid rgba(96, 165, 250, .23);
+      background:
+        radial-gradient(circle at 90% 10%, rgba(37, 99, 235, .17), transparent 40%),
+        linear-gradient(135deg, #131e31, #0d1421);
+      text-align: center;
+    }
+    .contact-panel h2 { max-width: 650px; margin: auto; }
+    .contact-panel p {
+      color: var(--muted);
+      max-width: 530px;
+      margin: 20px auto 28px;
+    }
+    .contact-email {
+      display: block;
+      color: var(--blue-light);
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    /* Footer */
+    footer { padding: 30px 0; }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-inner p { color: var(--muted); font-size: 12px; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { color: var(--muted); font-size: 12px; }
+    .footer-links a:hover { color: white; }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 800px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; }
+      .hero { min-height: auto; padding-top: 150px; }
+      .hero-art { min-height: 300px; }
+      .orbit { width: 235px; height: 235px; }
+      .compass { width: 110px; height: 110px; }
+      .orbit-label { right: -15px; }
+      .about-grid { gap: 35px; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px; left: 0; right: 0;
+        background: #0e1421;
+        border-bottom: 1px solid var(--border);
+        padding: 25px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px;
+      }
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: block; }
+    }
+    @media (max-width: 600px) {
+      .section { padding: 78px 0; }
+      .hero h1 { letter-spacing: -2.5px; }
+      .service-grid, .work-grid, .process-grid { grid-template-columns: 1fr; }
+      .service-card { padding: 27px; }
+      .contact-panel { padding: 42px 22px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .about-points { gap: 15px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="brand">
+        <svg class="brand-mark" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <path d="M50 5 L61 39 L95 50 L61 61 L50 95 L39 61 L5 50 L39 39 Z" stroke="currentColor" stroke-width="3"/>
+          <path d="M50 22 L56 44 L78 50 L56 56 L50 78 L44 56 L22 50 L44 44 Z" fill="#3b82f6"/>
+          <circle cx="50" cy="50" r="5" fill="#f8fafc"/>
+        </svg>
+        <span class="brand-name">NORTHSTAR <span>DIGITAL</span></span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Our Work</a></li>
+        <li><a href="#contact" class="nav-cta">Let's Talk ↗</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">Your digital direction starts here</div>
+          <h1>Build smarter.<br>Move <span>forward.</span></h1>
+          <p class="hero-copy">
+            We create modern websites and intelligent business automations
+            that help businesses work better, connect with customers, and grow.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Start a Project ↗</a>
+            <a href="#services" class="btn btn-outline">Explore Services</a>
+          </div>
+          <div class="hero-note">
+            <span class="status-dot"></span>
+            Websites. Automation. Growth.
+          </div>
+        </div>
+
+        <div class="hero-art reveal">
+          <div class="orbit">
+            <svg class="compass" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+              <path d="M50 4 L63 39 L96 50 L63 61 L50 96 L37 61 L4 50 L37 39 Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M50 19 L57 43 L81 50 L57 57 L50 81 L43 57 L19 50 L43 43 Z" fill="#3b82f6"/>
+              <circle cx="50" cy="50" r="5" fill="#f8fafc"/>
+            </svg>
+            <div class="orbit-label">FIND YOUR DIRECTION</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="services">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">What we do</div>
+          <h2>Digital solutions built<br>for what's next.</h2>
+          <p class="section-intro">
+            From your first online presence to smarter everyday operations,
+            we help turn business ideas into practical digital experiences.
+          </p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card reveal">
+            <div class="service-icon">⌘</div>
+            <h3>Website Development</h3>
+            <p>
+              Professional websites designed to build trust, communicate your
+              value, and turn visitors into customers.
+            </p>
+            <ul class="service-list">
+              <li>Business websites</li>
+              <li>Landing pages</li>
+              <li>Portfolio websites</li>
+              <li>Booking and enquiry websites</li>
+              <li>Website redesigns</li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon">✳</div>
+            <h3>Business Automation</h3>
+            <p>
+              Reduce repetitive work and make everyday business processes
+              simpler with connected tools and intelligent workflows.
+            </p>
+            <ul class="service-list">
+              <li>Appointment booking workflows</li>
+              <li>Customer enquiry automation</li>
+              <li>Lead capture and follow-ups</li>
+              <li>Workflow integrations</li>
+              <li>AI-assisted customer support</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-panel reveal">
+          <div class="big-mark">N.</div>
+          <strong>Technology should move your business forward.</strong>
+          <div class="eyebrow" style="margin:0">NORTHSTAR DIGITAL</div>
+        </div>
+
+        <div class="about-copy reveal">
+          <div class="eyebrow">A little about us</div>
+          <h2>Clarity in every<br>digital direction.</h2>
+          <p>
+            Northstar Digital is a digital solutions agency focused on
+            website development and business automation.
+          </p>
+          <p>
+            Our approach is simple: understand the problem, build a practical
+            solution, and make the experience clear for the people using it.
+          </p>
+          <div class="about-points">
+            <div class="about-point">
+              <strong>Purposeful Design</strong>
+              <span>Every detail has a reason.</span>
+            </div>
+            <div class="about-point">
+              <strong>Practical Technology</strong>
+              <span>Solutions made to be useful.</span>
+            </div>
+            <div class="about-point">
+              <strong>Clear Communication</strong>
+              <span>No unnecessary complexity.</span>
+            </div>
+            <div class="about-point">
+              <strong>Room to Grow</strong>
+              <span>Built with the future in mind.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section work" id="work">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">Selected concepts</div>
+          <h2>Ideas into digital experiences.</h2>
+          <p class="section-intro">
+            A preview of the kinds of digital solutions we aim to build.
+          </p>
+        </div>
+
+        <div class="work-grid">
+          <article class="work-card reveal">
+            <div class="work-preview">
+              <div class="preview-window">
+                <div class="preview-top"><i></i><i></i><i></i></div>
+                <div class="preview-line short"></div>
+                <div class="preview-line"></div>
+                <div class="preview-line"></div>
+                <div class="preview-button"></div>
+              </div>
+            </div>
+            <div class="work-info">
+              <small>Website concept</small>
+              <h3>Modern Business Website</h3>
+              <p>A clean online presence designed to introduce a business and make enquiries easier.</p>
+            </div>
+          </article>
+
+          <article class="work-card reveal">
+            <div class="work-preview">
+              <div class="preview-window">
+                <div class="preview-top"><i></i><i></i><i></i></div>
+                <div class="preview-line short"></div>
+                <div class="preview-line"></div>
+                <div class="preview-line" style="width:82%"></div>
+                <div class="preview-button" style="width:95px"></div>
+              </div>
+            </div>
+            <div class="work-info">
+              <small>Automation concept</small>
+              <h3>Smart Appointment Workflow</h3>
+              <p>A concept for simplifying appointment requests, customer details, and business follow-ups.</p>
+            </div>
+          </article>
+        </div>
+
+        <p class="work-disclaimer">
+          These are illustrative concepts, not completed client projects.
+          More work will be added as projects are completed.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">How we work</div>
+          <h2>Simple process.<br>Thoughtful execution.</h2>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-card reveal">
+            <div class="process-number">01 / DISCOVER</div>
+            <h3>Understand</h3>
+            <p>We learn about your business, your goals, and the problem you want to solve.</p>
+          </article>
+          <article class="process-card reveal">
+            <div class="process-number">02 / BUILD</div>
+            <h3>Create</h3>
+            <p>We design and develop a solution around your requirements and priorities.</p>
+          </article>
+          <article class="process-card reveal">
+            <div class="process-number">03 / DELIVER</div>
+            <h3>Launch</h3>
+            <p>We review the result, make improvements, and help you move forward.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div class="eyebrow">Have a project in mind?</div>
+          <h2>Let's build something meaningful.</h2>
+          <p>
+            Tell us what you're working on. Whether you need a website,
+            a smarter workflow, or simply want to explore an idea,
+            we'd love to hear from you.
+          </p>
+          <a class="btn btn-primary" href="mailto:YOUR_AGENCY_EMAIL@gmail.com?subject=Project%20Enquiry">
+            Get in Touch ↗
+          </a>
+          <a class="contact-email" href="mailto:YOUR_AGENCY_EMAIL@gmail.com">
+            YOUR_AGENCY_EMAIL@gmail.com
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a href="#home" class="brand">
+        <span class="brand-name">NORTHSTAR <span>DIGITAL</span></span>
+      </a>
+      <p>© <span id="year"></span> Northstar Digital. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", isOpen);
+      menuButton.textContent = isOpen ? "×" : "☰";
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(element => {
+      observer.observe(element);
+    });
+  </script>
+
+</body>
+</html>
